@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Draft Line — Boah Oh Woah</title>
+<meta name="theme-color" content="#0E0F13">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="phase-banner" class="phase-banner"></header>
+
+<div class="timer-row">
+  <div class="timer-label">PICK CLOCK</div>
+  <div id="timer" class="timer">30</div>
+  <button id="side-toggle" class="ghost-btn" title="Switch which side is you">You: <span id="side-toggle-label"></span></button>
+</div>
+
+<section class="teams">
+  <div class="team-col blue">
+    <div class="team-head">
+      <span id="label-blue" class="team-name">Blue</span>
+    </div>
+    <div class="row-label">Bans</div>
+    <div id="bans-blue" class="slot-row bans"></div>
+    <div class="row-label">Picks</div>
+    <div id="picks-blue" class="slot-row picks"></div>
+  </div>
+  <div class="team-col red">
+    <div class="team-head">
+      <span id="label-red" class="team-name">Red</span>
+    </div>
+    <div class="row-label">Bans</div>
+    <div id="bans-red" class="slot-row bans"></div>
+    <div class="row-label">Picks</div>
+    <div id="picks-red" class="slot-row picks"></div>
+  </div>
+</section>
+
+<div id="comp-check" class="comp-check"></div>
+
+<nav class="role-tabs">
+  <button class="role-tab active" data-role="all">All</button>
+  <button class="role-tab" data-role="EXP">EXP</button>
+  <button class="role-tab" data-role="Jungle">Jungle</button>
+  <button class="role-tab" data-role="Mid">Mid</button>
+  <button class="role-tab" data-role="Gold">Gold</button>
+  <button class="role-tab" data-role="Roam">Roam</button>
+</nav>
+
+<div class="search-row">
+  <input id="search-input" type="text" placeholder="Search hero…" autocomplete="off" autocapitalize="off" spellcheck="false">
+</div>
+
+<main id="hero-grid" class="hero-grid"></main>
+
+<div class="bottom-bar">
+  <button id="undo-btn" class="bar-btn">↺ Undo</button>
+  <button id="suggest-toggle" class="bar-btn primary">🎯 Suggestions</button>
+  <button id="reset-btn" class="bar-btn danger">Reset</button>
+</div>
+
+<div id="suggest-sheet" class="suggest-sheet">
+  <div class="suggest-sheet-handle"></div>
+  <div id="suggestions" class="suggestions"></div>
+</div>
+<div id="suggest-backdrop" class="suggest-backdrop"></div>
+
+<script src="heroes.js"></script>
+<script src="app.js"></script>
+<script>
+  document.getElementById("suggest-toggle").addEventListener("click", () => {
+    document.getElementById("suggest-sheet").classList.toggle("open");
+    document.getElementById("suggest-backdrop").classList.toggle("open");
+  });
+  document.getElementById("suggest-backdrop").addEventListener("click", () => {
+    document.getElementById("suggest-sheet").classList.remove("open");
+    document.getElementById("suggest-backdrop").classList.remove("open");
+  });
+  const origRender = window.addEventListener; // no-op guard
+</script>
+</body>
+</html>
